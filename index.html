@@ -199,20 +199,20 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- ── Cloud sync (Firebase) ───────────────────────────────
-       Temporarily disabled while a dedicated Costa Rica Firebase
-       project is set up. Until then the app saves on-device
-       (localStorage). To re-enable cross-device sync, paste the
-       new project's config below and uncomment this block.
-
+  <!-- Cloud sync — dedicated Costa Rica Firebase project (costarica-2026) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
   <script>
     firebase.initializeApp({
-      // ← new Costa Rica project config goes here
+      apiKey:            "AIzaSyCkrpW3g2Du0gZgy9v4hwXIcqV8n8wdlSM",
+      authDomain:        "costarica-2026.firebaseapp.com",
+      databaseURL:       "https://costarica-2026-default-rtdb.firebaseio.com",
+      projectId:         "costarica-2026",
+      storageBucket:     "costarica-2026.firebasestorage.app",
+      messagingSenderId: "381296620085",
+      appId:             "1:381296620085:web:e1ae9da7db1079b546b77c"
     });
   </script>
-  ──────────────────────────────────────────────────────────── -->
 
   <script src="data.js?v=2"></script>
   <script src="app.js?v=2"></script>

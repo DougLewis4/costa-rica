@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0e7c5a">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+  <title>Costa Rica 2026 — An Itinerary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body data-screen-label="Costa Rica 2026 Dashboard">
+
+  <!-- ── Masthead ───────────────────────────── -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="masthead-left">
+        <span class="rule-pill">Vol. I · Agosto 2026</span>
+      </div>
+      <div class="masthead-center">
+        <div class="masthead-title">Costa Rica 2026</div>
+        <div class="masthead-sub">Arenal · San José · Pura Vida</div>
+      </div>
+      <div class="masthead-right">
+        <span class="rule-pill accent" id="masthead-countdown">— days</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="dashboard">
+
+      <!-- ── Sidebar ─────────────────────────── -->
+      <aside class="sidebar">
+
+        <!-- Hero countdown -->
+        <div class="hero-card">
+          <div class="hero-eyebrow">Until Departure</div>
+          <div class="hero-days" id="hero-days">—</div>
+          <div class="hero-days-label" id="hero-days-label">days to departure</div>
+
+          <div class="hero-ring-wrap">
+            <svg class="hero-ring" viewBox="0 0 140 140">
+              <circle class="ring-bg"   cx="70" cy="70" r="60"/>
+              <circle class="ring-fill" id="ring-fill" cx="70" cy="70" r="60"
+                stroke-dasharray="376.99" stroke-dashoffset="376.99"/>
+            </svg>
+            <div class="hero-ring-label">
+              <div class="hero-ring-pct" id="ring-pct">0%</div>
+              <div class="hero-ring-sub" id="ring-sub">0 of 0 done</div>
+            </div>
+          </div>
+
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <div class="hero-meta-value" id="hero-trip">10 days</div>
+              <div class="hero-meta-label">In Costa Rica</div>
+            </div>
+            <div class="hero-meta-divider"></div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-value" id="hero-budget">$—</div>
+              <div class="hero-meta-label">Estimated</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next up -->
+        <div class="card nextup-card">
+          <div class="card-title">Next Up <span class="card-sub">what's due</span></div>
+          <div class="nextup-list" id="nextup-list"></div>
+        </div>
+
+        <!-- Budget -->
+        <div class="card budget-card">
+          <div class="card-title">Budget <span class="card-sub">running total</span></div>
+          <div class="budget-row">
+            <span class="label">Spent</span>
+            <span class="value" id="budget-actual">$0</span>
+          </div>
+          <div class="budget-row total">
+            <span class="label">Estimated</span>
+            <span class="value" id="budget-est">$0</span>
+          </div>
+          <div class="budget-bar"><div class="budget-bar-fill" id="budget-bar"></div></div>
+        </div>
+      </aside>
+
+      <!-- ── Main pane ───────────────────────── -->
+      <section class="main">
+
+        <div class="pane-switch">
+          <button data-pane="checklist" class="active">Checklist</button>
+          <button data-pane="itinerary">Itinerary</button>
+          <button data-pane="housing">Housing</button>
+          <button data-pane="restaurants">Restaurants</button>
+        </div>
+
+        <!-- Checklist pane -->
+        <div class="pane-checklist" data-screen-label="Checklist">
+          <div class="section-head">
+            <div class="section-head-left">
+              <div class="section-eyebrow">— To Do —</div>
+              <h2 class="section-title">The Planning Checklist</h2>
+            </div>
+            <div class="section-sub">Sorted by when it needs doing</div>
+          </div>
+
+          <div class="filter-bar">
+            <button data-filter="all"    class="active">All</button>
+            <button data-filter="open">Open</button>
+            <button data-filter="booked">In progress</button>
+            <button data-filter="done">Completed</button>
+            <button id="add-task-btn" class="add-task-btn">+ Add task</button>
+          </div>
+
+          <div id="checklist-wrap"></div>
+
+        </div>
+
+        <!-- Itinerary pane -->
+        <div class="pane-itinerary" data-screen-label="Itinerary">
+          <figure class="itin-banner">
+            <img src="images/la-fortuna-waterfall.jpg?v=1" alt="" class="itin-banner-img"
+                 onerror="this.classList.add('missing')"/>
+            <div class="itin-banner-placeholder">
+              <span class="itin-banner-slot">images/la-fortuna-waterfall.jpg</span>
+              <span class="itin-banner-hint">drop a wide Costa Rica photo here · ~2000×700</span>
+            </div>
+            <figcaption class="itin-banner-caption">La Fortuna Waterfall · Costa Rica 2026</figcaption>
+          </figure>
+          <div class="section-head">
+            <div class="section-head-left">
+              <div class="section-eyebrow">— Itinerary —</div>
+              <h2 class="section-title">Ten Days in Costa Rica</h2>
+            </div>
+            <div class="section-sub">Aug 22 — 31, 2026</div>
+          </div>
+          <div class="trip-map-card">
+            <div id="trip-map"></div>
+          </div>
+          <div class="itinerary" id="itinerary-wrap"></div>
+        </div>
+
+        <!-- Housing pane -->
+        <div class="pane-housing" data-screen-label="Housing">
+          <div class="section-head">
+            <div class="section-head-left">
+              <div class="section-eyebrow">— Accommodation —</div>
+              <h2 class="section-title">Housing Options</h2>
+            </div>
+            <div class="section-sub">Compare &amp; book your stays</div>
+          </div>
+          <div id="housing-wrap"></div>
+        </div>
+
+        <!-- Restaurants pane -->
+        <div class="pane-restaurants" data-screen-label="Restaurants">
+          <div class="section-head">
+            <div class="section-head-left">
+              <div class="section-eyebrow">— Dining —</div>
+              <h2 class="section-title">Restaurants</h2>
+            </div>
+            <div class="section-sub">Plan your meals by stop</div>
+          </div>
+          <div id="restaurants-wrap"></div>
+        </div>
+
+        <div class="footer">— pura vida · an unforgettable adventure —</div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ── Drawer ─────────────────────────── -->
+  <div id="drawer-overlay" class="drawer-overlay hidden">
+    <div class="drawer">
+      <div class="drawer-handle"></div>
+      <div class="drawer-content" id="drawer-content"></div>
+    </div>
+  </div>
+
+  <!-- Countdown pill in masthead (small, always visible) -->
+  <script>
+    (function(){
+      function tickMasthead(){
+        var DEP = new Date('2026-08-22T10:13:00');
+        var diff = Math.ceil((DEP - new Date()) / 86400000);
+        var el = document.getElementById('masthead-countdown');
+        if (el) el.textContent = diff > 0 ? (diff + ' days') : '¡Pura vida!';
+      }
+      tickMasthead();
+      setInterval(tickMasthead, 60000);
+    })();
+  </script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script>
+    firebase.initializeApp({
+      apiKey:            "AIzaSyAMMaMLc2iTkRW2PGu-gP04n3eG4IwC51o",
+      authDomain:        "france-2026.firebaseapp.com",
+      databaseURL:       "https://france-2026-default-rtdb.firebaseio.com",
+      projectId:         "france-2026",
+      storageBucket:     "france-2026.firebasestorage.app",
+      messagingSenderId: "583519475055",
+      appId:             "1:583519475055:web:7cf585c15f9bc2a7ba849a"
+    });
+  </script>
+  <script src="data.js?v=1"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>

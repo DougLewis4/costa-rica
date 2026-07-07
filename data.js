@@ -98,7 +98,7 @@ const CATEGORIES = [
 ];
 
 const ITINERARY = [
-  { date: '2026-08-22', dow: 'Saturday',  title: 'Travel Day: San Diego → San José', stop: 'SAN → SJO', photo: 'images/travel.jpg', activities: [
+  { date: '2026-08-22', dow: 'Saturday',  title: 'Travel Day: San Diego → San José', stop: 'SAN → SJO', photo: 'images/san-diego.avif', activities: [
     { time: '10:13 AM', detail: 'Depart San Diego (United UA1980 → Houston)' },
     { time: '3:34 PM',  detail: 'Arrive Houston (IAH) — 1h 24m layover' },
     { time: '4:58 PM',  detail: 'Depart Houston (United UA1280 → San José)' },
@@ -106,20 +106,20 @@ const ITINERARY = [
     { time: '8:00 PM',  detail: 'Pick up the Budget rental SUV at the airport' },
     { time: 'Evening',  detail: 'Check in at the Fairfield by Marriott (Alajuela, ~3 min from airport) — rest up; don’t drive to Arenal tonight' }
   ]},
-  { date: '2026-08-23', dow: 'Sunday',    title: 'Drive to La Fortuna & Arenal', stop: 'La Fortuna', photo: 'images/la-fortuna.jpg', activities: [
+  { date: '2026-08-23', dow: 'Sunday',    title: 'Drive to La Fortuna & Arenal', stop: 'La Fortuna', photo: 'images/la-fortuna.jpeg', activities: [
     { time: 'Morning',   detail: 'Easy breakfast, then hit the road north' },
     { time: 'Late morn.',detail: 'Scenic drive to La Fortuna (~2.5–3 hrs) past coffee country and Lake Arenal' },
     { time: '3:00 PM',   detail: 'Check in at Noah’s Hideaway by Tifakara' },
     { time: 'Afternoon', detail: 'Settle in — first views of the perfectly cone-shaped Arenal Volcano' },
     { time: 'Evening',   detail: 'Dinner in La Fortuna town; ease into the volcanic thermal waters' }
   ]},
-  { date: '2026-08-24', dow: 'Monday',    title: 'Arenal Volcano Day', stop: 'La Fortuna', photo: 'images/arenal.jpg', activities: [
+  { date: '2026-08-24', dow: 'Monday',    title: 'Arenal Volcano Day', stop: 'La Fortuna', photo: 'images/arenal-volcano.jpg', activities: [
     { time: 'Morning',   detail: 'Arenal Volcano National Park — old lava trails and the lookout at the volcano’s base' },
     { time: 'Midday',    detail: 'Mistico Arenal Hanging Bridges — a rainforest canopy walk (watch for sloths & toucans)' },
     { time: 'Afternoon', detail: 'La Fortuna Waterfall — 500 steps down to a jungle swimming pool' },
     { time: 'Evening',   detail: 'Hot springs at Tabacón or EcoTermales — natural volcanic thermal rivers' }
   ]},
-  { date: '2026-08-25', dow: 'Tuesday',   title: 'Adventure Day', stop: 'La Fortuna', photo: 'images/rio-celeste.jpg', activities: [
+  { date: '2026-08-25', dow: 'Tuesday',   title: 'Adventure Day', stop: 'La Fortuna', photo: 'images/lake-arenal.jpg', activities: [
     { time: 'Morning',   detail: 'Big-adventure pick: Sky Adventures ziplines & aerial tram, or the Río Celeste turquoise-river hike (~2 hr drive)' },
     { time: 'Afternoon', detail: 'Lake Arenal viewpoints, a coffee/chocolate tour, or simply relax by the pool' },
     { time: 'Evening',   detail: 'Last La Fortuna dinner — sunset over the volcano' }
@@ -139,18 +139,18 @@ const ITINERARY = [
     { time: 'Daytime',   detail: 'Focused work blocks' },
     { time: 'Evening',   detail: 'Dinner in San José — the Barrio Escalante food scene is worth the short trip' }
   ]},
-  { date: '2026-08-29', dow: 'Saturday',  title: 'Weekend · Explore', stop: 'Central Valley', photo: 'images/poas.jpg', activities: [
+  { date: '2026-08-29', dow: 'Saturday',  title: 'Weekend · Explore', stop: 'Central Valley', photo: 'images/la-paz-waterfall.jpg', activities: [
     { time: 'Option',    detail: 'Poás Volcano crater + La Paz Waterfall Gardens (classic day trip)' },
     { time: 'Option',    detail: 'Coffee plantation tour (Doka Estate) — see how Costa Rican coffee is grown' },
     { time: 'Option',    detail: 'Downtown San José — Central Market, National Theater, Jade & Gold museums' },
     { time: 'Evening',   detail: 'Back to Escazú for dinner' }
   ]},
-  { date: '2026-08-30', dow: 'Sunday',    title: 'Weekend · Relax', stop: 'San José', photo: 'images/sanjose.jpg', activities: [
+  { date: '2026-08-30', dow: 'Sunday',    title: 'Weekend · Relax', stop: 'San José', photo: 'images/san-jose.jpg', activities: [
     { time: 'Morning',   detail: 'Slow start — a local feria (farmers market) or a spa/yoga morning' },
     { time: 'Afternoon', detail: 'Souvenir run: Costa Rican coffee, chocolate, crafts. Start packing' },
     { time: 'Evening',   detail: 'Final dinner in Costa Rica' }
   ]},
-  { date: '2026-08-31', dow: 'Monday',    title: 'Fly Home', stop: 'San José → San Diego', photo: 'images/travel.jpg', activities: [
+  { date: '2026-08-31', dow: 'Monday',    title: 'Fly Home', stop: 'San José → San Diego', photo: 'images/san-diego.avif', activities: [
     { time: 'Morning',   detail: 'Last breakfast; head to SJO airport (arrive ~11am — 2.5 hrs before an international flight)' },
     { time: '1:40 PM',   detail: 'Depart San José (Southwest WN1203 → Houston Hobby)' },
     { time: '6:20 PM',   detail: 'Arrive Houston Hobby (HOU) — change planes' },

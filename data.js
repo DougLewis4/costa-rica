@@ -51,29 +51,22 @@ const CATEGORIES = [
         estimatedCost: 120,
         defaultStatus: 'done',
         hint: 'Travel Guard policy #1003891888 (purchased with the Expedia/Hotels.com booking). Covers trip cancellation, medical, and lost luggage.'
-      }
-    ]
-  },
-  {
-    id: 'lodging',
-    label: 'Lodging — To Confirm',
-    locked: false,
-    tasks: [
-      {
-        id: 'hotel-arrival',
-        title: 'Arrival night — Aug 22 (near SJO airport?)',
-        dueDate: '2026-08-01',
-        estimatedCost: 120,
-        defaultStatus: 'not-started',
-        hint: 'You land at 7:37pm and grab the car at 8pm — La Fortuna is a ~3-hour drive, so most people sleep near the airport (Alajuela/Belén) the first night and drive up fresh on the 23rd. Book a hotel here, or decide to drive up that night.'
       },
       {
-        id: 'hotel-sanjose',
-        title: 'Escazú / San José stay — Aug 26–31 (work half, 5 nights)',
-        dueDate: '2026-08-01',
-        estimatedCost: 700,
-        defaultStatus: 'not-started',
-        hint: 'Your car drops off in Escazú on the 26th, so this is your base for the work stretch. Look for strong wifi, a desk, and walkable cafés. See the Housing tab for options — or confirm if it’s arranged through the Mercy Outreach program.'
+        id: 'hotel-arrival-fairfield',
+        title: 'Hotel: Fairfield by Marriott San José Airport — Alajuela (Aug 22)',
+        dueDate: null,
+        estimatedCost: 125,
+        defaultStatus: 'booked',
+        hint: 'Arrival night, 1 night. Radial Francisco J. Orlich, Plaza Los Mangos, Alajuela · ~3 min from SJO airport.\nFree breakfast, onsite parking, airport shuttle & gym.\n$125 (AAA rate) · free cancellation until Aug 20.\nDon’t drive to Arenal tonight — stay here and drive up fresh on the 23rd.'
+      },
+      {
+        id: 'hotel-hyatt-escazu',
+        title: 'Hotel: Hyatt Centric San José Escazú (Aug 26–31)',
+        dueDate: null,
+        estimatedCost: 350,
+        defaultStatus: 'booked',
+        hint: 'Work-half base, 5 nights. Plaza Tempo, Autopista Próspero Fernández, Escazú · +506 7053 0605.\n$350 · steps from the Av. Escazú car drop-off and walking distance to the worksite (Magna Médica, San Rafael de Escazú).'
       }
     ]
   },
@@ -111,7 +104,7 @@ const ITINERARY = [
     { time: '4:58 PM',  detail: 'Depart Houston (United UA1280 → San José)' },
     { time: '7:37 PM',  detail: 'Land in San José (SJO) 🌴 — welcome to Costa Rica!' },
     { time: '8:00 PM',  detail: 'Pick up the Budget rental SUV at the airport' },
-    { time: 'Evening',  detail: 'Check in near the airport for the night (to confirm), or drive on to La Fortuna' }
+    { time: 'Evening',  detail: 'Check in at the Fairfield by Marriott (Alajuela, ~3 min from airport) — rest up; don’t drive to Arenal tonight' }
   ]},
   { date: '2026-08-23', dow: 'Sunday',    title: 'Drive to La Fortuna & Arenal', stop: 'La Fortuna', photo: 'images/la-fortuna.jpg', activities: [
     { time: 'Morning',   detail: 'Easy breakfast, then hit the road north' },
@@ -135,7 +128,7 @@ const ITINERARY = [
     { time: '12:00 PM',  detail: 'Check out of Noah’s Hideaway' },
     { time: 'Afternoon', detail: 'Drive back toward the Central Valley (~3 hrs); stop for a late lunch on the way' },
     { time: '5:00 PM',   detail: 'Return the rental car in Escazú (Av. Escazú, near Torre Lexus)' },
-    { time: 'Evening',   detail: 'Check in to your Escazú stay — the work half begins. Escazú is San José’s modern, walkable district: cafés, malls, restaurants' }
+    { time: 'Evening',   detail: 'Check in to the Hyatt Centric San José Escazú — the work half begins. Walking distance to the worksite (Magna Médica); Escazú is San José’s modern, walkable district: cafés, malls, restaurants' }
   ]},
   { date: '2026-08-27', dow: 'Thursday',  title: 'Work Day · Escazú', stop: 'Escazú', photo: 'images/escazu.jpg', activities: [
     { time: 'Morning',   detail: 'Work — grab a great local coffee to start' },
@@ -189,12 +182,11 @@ const MAP_STOPS = [
 // HOUSING STOPS
 // ============================================================
 const HOUSING_STOPS = [
-  { id: 'arrival', label: 'Arrival Night · Near SJO Airport', checkIn: '2026-08-22', checkOut: '2026-08-23', nights: 1, taskId: 'hotel-arrival',
+  { id: 'arrival', label: 'Arrival Night · Near SJO Airport', checkIn: '2026-08-22', checkOut: '2026-08-23', nights: 1, taskId: 'hotel-arrival-fairfield',
     recommendations: [
-      { name: 'Costa Rica Marriott Hacienda Belén', tier: 'Luxury',    note: 'Colonial-style resort ~10 min from airport · pool · easy first night', url: 'https://www.google.com/search?q=Costa+Rica+Marriott+Hotel+Hacienda+Belen' },
-      { name: 'Hampton by Hilton San Jose Airport', tier: 'Mid-range', note: 'Reliable · free airport shuttle · breakfast included', url: 'https://www.google.com/search?q=Hampton+by+Hilton+San+Jose+Airport+Costa+Rica' },
-      { name: 'Holiday Inn Express San Jose Airport', tier: 'Mid-range', note: 'Simple & close · shuttle · good for a quick overnight', url: 'https://www.google.com/search?q=Holiday+Inn+Express+San+Jose+Costa+Rica+Airport' },
-      { name: 'Adventure Inn', tier: 'Budget', note: 'Longtime traveler favorite near the airport · shuttle · pool', url: 'https://www.google.com/search?q=Adventure+Inn+Costa+Rica' },
+      { name: 'Fairfield by Marriott San José Airport  ✓ BOOKED', tier: 'Mid-range', note: 'Your confirmed arrival night · Plaza Los Mangos, Alajuela · ~3 min from SJO · free breakfast, shuttle & parking · $125', url: 'https://www.google.com/search?q=Fairfield+by+Marriott+San+Jose+Airport+Alajuela+Costa+Rica' },
+      { name: 'Costa Rica Marriott Hacienda Belén', tier: 'Luxury', note: 'Alternative · colonial-style resort ~10 min from airport · pool', url: 'https://www.google.com/search?q=Costa+Rica+Marriott+Hotel+Hacienda+Belen' },
+      { name: 'Hampton by Hilton San Jose Airport', tier: 'Mid-range', note: 'Alternative · free airport shuttle · breakfast included', url: 'https://www.google.com/search?q=Hampton+by+Hilton+San+Jose+Airport+Costa+Rica' },
     ]
   },
   { id: 'fortuna', label: 'La Fortuna / Arenal', checkIn: '2026-08-23', checkOut: '2026-08-26', nights: 3, taskId: 'hotel-fortuna',
@@ -204,12 +196,11 @@ const HOUSING_STOPS = [
       { name: 'La Fortuna Lodge', tier: 'Mid-range', note: 'In town · volcano view · budget-friendly (alt. Maya compared)', url: 'https://www.google.com/search?q=La+Fortuna+Lodge+Costa+Rica' },
     ]
   },
-  { id: 'sanjose', label: 'Escazú · Work Base', checkIn: '2026-08-26', checkOut: '2026-08-31', nights: 5, taskId: 'hotel-sanjose',
+  { id: 'sanjose', label: 'Escazú · Work Base', checkIn: '2026-08-26', checkOut: '2026-08-31', nights: 5, taskId: 'hotel-hyatt-escazu',
     recommendations: [
-      { name: 'Residence Inn San Jose Escazú', tier: 'Mid-range', note: 'In-room kitchen + desk · great for a 5-night work stay · walkable to Avenida Escazú', url: 'https://www.google.com/search?q=Residence+Inn+San+Jose+Escazu' },
-      { name: 'Courtyard San Jose Escazú', tier: 'Mid-range', note: 'Reliable business hotel · fast wifi · pool · restaurants nearby', url: 'https://www.google.com/search?q=Courtyard+San+Jose+Escazu' },
-      { name: 'AC Hotel San Jose Escazú', tier: 'Luxury', note: 'Modern · rooftop views · steps from Escazú malls & cafés', url: 'https://www.google.com/search?q=AC+Hotel+San+Jose+Escazu' },
-      { name: 'Sheraton San Jose (Escazú)', tier: 'Luxury', note: 'Full-service resort feel next to Multiplaza mall · business-friendly', url: 'https://www.google.com/search?q=Sheraton+San+Jose+Hotel+Escazu' },
+      { name: 'Hyatt Centric San José Escazú  ✓ BOOKED', tier: 'Luxury', note: 'Your confirmed 5-night stay · Plaza Tempo, Autopista Próspero Fernández · +506 7053 0605 · walking distance to the worksite · $350', url: 'https://www.google.com/search?q=Hyatt+Centric+San+Jose+Escazu' },
+      { name: 'Residence Inn San Jose Escazú', tier: 'Mid-range', note: 'Alternative · in-room kitchen + desk · walkable to Avenida Escazú', url: 'https://www.google.com/search?q=Residence+Inn+San+Jose+Escazu' },
+      { name: 'AC Hotel San Jose Escazú', tier: 'Luxury', note: 'Alternative · modern · rooftop views · steps from Escazú malls', url: 'https://www.google.com/search?q=AC+Hotel+San+Jose+Escazu' },
     ]
   },
 ];
